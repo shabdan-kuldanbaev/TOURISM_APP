@@ -2,6 +2,7 @@
 
 import { motion, stagger, useAnimate } from 'motion/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { TextGenerateEffect } from '@/shared/ui';
 
@@ -10,7 +11,7 @@ export const Hero = () => {
 
   useEffect(() => {
     animateLogo(
-      'img',
+      'span, img',
       {
         opacity: 1,
         filter: 'blur(0px)',
@@ -42,7 +43,7 @@ export const Hero = () => {
         Your browser does not support the video tag.
       </video>
       <div className="relative z-20 px-4 mx-auto max-w-screen-xl flex flex-col items-center justify-center text-center gap-3">
-        <motion.div ref={logoScope}>
+        <motion.div ref={logoScope} className="flex flex-col items-center justify-center gap-4">
           <Image
             src="/logos/logoLight.svg"
             alt="La Kirghize Logo"
@@ -50,7 +51,9 @@ export const Hero = () => {
             height={228}
             className="stroke-current fill-current opacity-0"
           />
+          <span className="font-custom text-5xl opacity-0">La Kirghize</span>
         </motion.div>
+
         <TextGenerateEffect words="Découvrez le Kirghizistan avec nous" />
       </div>
     </section>
