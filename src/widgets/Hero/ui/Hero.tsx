@@ -3,39 +3,26 @@
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMediaQuery } from 'react-responsive';
 import { Button } from '@/shared/ui/button';
 
-const videoLinks = {
-  mobile: '/hero/hero-mobile.mp4',
-  desktop: '/hero/hero-desktop.mp4',
-  tablet: '/hero/hero-tablet.mp4',
-};
-
 export const Hero = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
-
-  const getVideoSource = () => {
-    if (isMobile) {
-      return videoLinks.mobile;
-    }
-    if (isTablet) {
-      return videoLinks.tablet;
-    }
-    return videoLinks.desktop; // Default to desktop for larger screens
-  };
-
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <video
         autoPlay
         loop
         muted
+        playsInline
         poster="/hero/hero-poster.jpg"
         className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
-        src={getVideoSource()}
       >
+        <source src="/hero/hero-desktop.mp4" type="video/mp4" media="(min-width: 1024px)" />
+        <source
+          src="/hero/hero-tablet.mp4"
+          type="video/mp4"
+          media="(min-width: 768px) and (max-width: 1023px)"
+        />
+        <source src="/hero/hero-mobile.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="relative z-20 px-4 mx-auto max-w-screen-xl flex flex-col items-center justify-center text-center gap-2">
