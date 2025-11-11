@@ -2,7 +2,6 @@
 
 import { motion, stagger, useAnimate } from 'motion/react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect } from 'react';
 import { TextGenerateEffect } from '@/shared/ui';
 
@@ -47,8 +46,8 @@ export const Hero = () => {
           <Image
             src="/logos/logoLight.svg"
             alt="La Kirghize Logo"
-            width={228}
-            height={228}
+            width={276}
+            height={276}
             className="stroke-current fill-current opacity-0"
           />
           <span className="font-custom text-5xl opacity-0">La Kirghize</span>
