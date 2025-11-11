@@ -14,6 +14,7 @@ export const Team = () => {
           ]}
           direction="right"
           speed="slow"
+          pauseOnHover
         />
         <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">

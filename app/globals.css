@@ -10,9 +10,12 @@
 }
 
 .animate-scroll {
-  animation:
-    scroll 80s,
-    40s reverse linear infinite;
+  animation: scroll var(--animation-duration, 40s) var(--animation-direction, reverse) linear
+    infinite;
+}
+
+.pause-on-hover:hover {
+  animation-play-state: paused;
 }
 
 :root {
