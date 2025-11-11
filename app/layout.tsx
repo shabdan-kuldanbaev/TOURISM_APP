@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans_Adlam } from 'next/font/google';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 
@@ -10,7 +10,8 @@ import './globals.css';
 import { Providers } from '@/app/providers';
 import { cn } from '@/shared/lib';
 
-const inter = Inter({ subsets: ['latin'] });
+const notoFont = Noto_Sans_Adlam({ subsets: ['latin'] });
+
 const customFont = localFont({
   src: '../public/font.ttf',
   variable: '--font-custom',
@@ -28,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn('flex flex-col min-h-screen', inter.className, customFont.variable)}>
+      <body className={cn('flex flex-col min-h-screen', notoFont.className, customFont.variable)}>
         <Providers attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
           <main className="flex-grow">{children}</main>

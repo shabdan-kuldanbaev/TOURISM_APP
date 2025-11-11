@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import {
@@ -39,8 +40,12 @@ export function Header() {
     <Navbar>
       {/* Desktop Navigation */}
       <NavBody>
-        <Link href="/" className="z-10 px-4 text-2xl font-bold font-custom cursor-pointer">
-          La Kirghize
+        <Link
+          href="/"
+          className="flex items-center gap-2 z-10 text-2xl font-bold font-custom cursor-pointer"
+        >
+          <Image src="/logos/logoLight.svg" alt="La Kirghize logo" width={32} height={32} />
+          <span>La Kirghize</span>
         </Link>
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
@@ -65,10 +70,7 @@ export function Header() {
         <MobileNavMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)}>
           {navItems.map((item, idx) => (
             <a
-              key={`mobile-link-${
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                idx
-              }`}
+              key={`mobile-link-${idx}`}
               href={item.link}
               onClick={() => setIsMobileMenuOpen(false)}
               className="relative text-neutral-600 dark:text-neutral-300"

@@ -91,6 +91,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-custom: var(--font-custom);
+  --font-story: var(--story-script);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);

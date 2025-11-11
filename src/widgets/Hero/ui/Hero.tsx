@@ -46,8 +46,8 @@ export const Hero = () => {
           <Image
             src="/logos/logoLight.svg"
             alt="La Kirghize Logo"
-            width={128}
-            height={128}
+            width={228}
+            height={228}
             className="stroke-current fill-current opacity-0"
           />
         </motion.div>
