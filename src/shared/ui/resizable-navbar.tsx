@@ -1,17 +1,29 @@
 'use client';
+
 import { MenuIcon, X } from 'lucide-react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
+import {
+  Children,
+  type ComponentPropsWithoutRef,
+  cloneElement,
+  type ElementType,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { cn } from '@/shared/lib';
 
 interface NavbarProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
 interface NavBodyProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   visible?: boolean;
 }
@@ -26,18 +38,18 @@ interface NavItemsProps {
 }
 
 interface MobileNavProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   visible?: boolean;
 }
 
 interface MobileNavHeaderProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
 interface MobileNavMenuProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   isOpen: boolean;
   onClose: () => void;
@@ -65,9 +77,9 @@ export const Navbar = ({ children, className }: NavbarProps) => {
       // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
       className={cn('fixed inset-x-0 top-0 z-40 w-full', className)}
     >
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child as React.ReactElement<{ visible?: boolean }>, { visible })
+      {Children.map(children, (child) =>
+        isValidElement(child)
+          ? cloneElement(child as ReactElement<{ visible?: boolean }>, { visible })
           : child
       )}
     </motion.header>
@@ -120,10 +132,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
           className={'relative px-4 py-2 text-foreground'}
-          key={`link-${
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-            idx
-          }`}
+          key={`link-${idx}`}
           href={item.link}
         >
           {hovered === idx && (
@@ -178,10 +187,34 @@ export const MobileNavHeader = ({ children, className }: MobileNavHeaderProps) =
 };
 
 export const MobileNavMenu = ({ children, className, isOpen, onClose }: MobileNavMenuProps) => {
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Check if click is outside the menu
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+
+    // Only add listener when menu is open
+    if (isOpen) {
+      // Small delay to prevent immediate closing when opening
+      setTimeout(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+      }, 0);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          ref={menuRef}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -214,11 +247,11 @@ export const NavbarButton = ({
   ...props
 }: {
   href?: string;
-  as?: React.ElementType;
-  children: React.ReactNode;
+  as?: ElementType;
+  children: ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary' | 'dark' | 'gradient';
-} & (React.ComponentPropsWithoutRef<'a'> | React.ComponentPropsWithoutRef<'button'>)) => {
+} & (ComponentPropsWithoutRef<'a'> | ComponentPropsWithoutRef<'button'>)) => {
   const baseStyles =
     'px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-medium relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center';
 
