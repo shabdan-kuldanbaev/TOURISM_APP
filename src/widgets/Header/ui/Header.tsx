@@ -38,29 +38,10 @@ function Header() {
 
   return (
     <Navbar>
-      {/* Desktop Navigation */}
       <NavBody>
-        <Link
-          href="/"
-          className="flex items-center gap-2 z-10 text-2xl font-bold font-custom cursor-pointer"
-        >
-          {/* Light logo - hidden in dark mode */}
-          <Image
-            src="/logos/logo.svg"
-            alt="La Kirghize logo"
-            width={32}
-            height={32}
-            className="block dark:hidden"
-          />
-          {/* Dark logo - hidden in light mode */}
-          <Image
-            src="/logos/logoLight.svg"
-            alt="La Kirghize logo"
-            width={32}
-            height={32}
-            className="hidden dark:block"
-          />
-          <span>La Kirghize</span>
+        <Link href="/" className=" flex items-center gap-2 z-10 text-2xl cursor-pointer">
+          <Image src="/logos/logoLight.svg" alt="La Kirghize logo" width={32} height={32} />
+          <span className="text-white font-bold font-custom">La Kirghize</span>
         </Link>
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
