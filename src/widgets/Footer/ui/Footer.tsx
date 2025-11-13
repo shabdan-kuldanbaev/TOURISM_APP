@@ -1,8 +1,8 @@
 export const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4 mt-auto">
-      <div className="container mx-auto text-center">
-        <p>&copy; 2025 Tourism App. All rights reserved.</p>
+    <footer className="bg-red-600 pt-[50vh]">
+      <div className="fixed z-0 bottom-0 w-full h-[50vh] text-7xl font-bold text-white text-center flex items-center justify-center">
+        Hello world!
       </div>
     </footer>
   );

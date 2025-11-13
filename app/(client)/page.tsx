@@ -8,7 +8,7 @@ import { Testimonial } from '@/widgets/Testimonial';
 
 export default async function Home() {
   return (
-    <main className="flex flex-col">
+    <>
       <Hero />
       <Article />
       <Newsletter />
@@ -16,6 +16,6 @@ export default async function Home() {
       <Team />
       <CTA />
       <Contact />
-    </main>
+    </>
   );
 }

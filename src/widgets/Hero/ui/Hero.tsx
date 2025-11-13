@@ -50,10 +50,10 @@ export const Hero = () => {
             height={276}
             className="stroke-current fill-current opacity-0"
           />
-          <span className="font-custom text-5xl opacity-0">La Kirghize</span>
+          <span className="text-white font-custom text-5xl opacity-0">La Kirghize</span>
         </motion.div>
 
-        <TextGenerateEffect words="Découvrez le Kirghizistan avec nous" />
+        <TextGenerateEffect words="Découvrez le Kirghizistan avec nous" className="text-white" />
       </div>
     </section>
   );
