@@ -27,7 +27,7 @@ These commands will freeze the AI assistant. Only run linting and formatting com
 ## Project Initialization Steps
 
 ### 1. Initialize Next.js Project
-Initialize Next.js in the current directory (not in a subdirectory). Use TypeScript, Tailwind CSS, and App Router. Use import alias `@/*` and disable src directory.
+Initialize Next.js in the current directory (not in a subdirectory). Use TypeScript, Tailwind CSS, and App Router. Use import alias `@/*` and the `src` directory.
 
 **Important:** Initialize directly in the current working directory, not in a new folder.
 
@@ -108,6 +108,8 @@ src/
   features/                   # User features
   widgets/                    # Composite blocks (e.g., Article, Contact, Header)
 ```
+
+The initial setup includes the `article` entity and several pre-built widgets: `Article`, `Contact`, `CTA`, `Footer`, `Header`, `Hero`, `Newsletter`, `Team`, and `Testimonial`.
 
 **Create barrel exports (`index.ts`) for each layer:**
 - `src/shared/ui/index.ts`
@@ -202,7 +204,7 @@ Update `tsconfig.json` in the root directory with:
 
 4. **Sanity Integration:**
     - All Sanity client usage should go through `src/shared/api/sanity.ts`
-    - Sanity schemas are defined in `src/shared/schemas/`. As entities are created, their corresponding schemas can be co-located within the entity folder (e.g. `src/entities/article/article.schema.ts`).
+    - Sanity schemas are defined in `src/shared/schemas/`. As entities are created, their corresponding schemas can be co-located within the entity folder (e.g. `src/entities/article/model/article.schema.ts`).
     - Content fetching should be organized by entity in `src/entities/*/api/`
 
 ### 10. Configure Git Ignore
@@ -256,7 +258,7 @@ When working with Sanity content:
 **Schema Definition (src/shared/schemas/ or co-located within entities):**
 - Define content types in Sanity Studio
 - Export schemas from barrel file (or directly from entity if co-located)
-- Example: `src/entities/article/article.schema.ts`
+- Example: `src/entities/article/model/article.schema.ts`
 
 **Entity Layer (src/entities/):**
 - Create entity for each Sanity content type
@@ -265,10 +267,11 @@ When working with Sanity content:
 - Example structure:
 ```
   src/entities/article/
-    types/index.ts       # TypeScript types
-    api/index.ts         # Sanity queries
-    model/index.ts       # Business logic
-    ui/ArticleCard.tsx   # UI components
+    index.ts             # Barrel export for the entity
+    api/                 # API functions for fetching data (e.g., getArticles.ts)
+    model/               # Business logic and schemas (e.g., article.schema.ts)
+    types/               # TypeScript types (e.g., article.ts)
+    ui/                  # React components for the entity (e.g., ArticleCard.tsx)
 ```
 
 **Data Fetching:**

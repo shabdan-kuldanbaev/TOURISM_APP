@@ -11,3 +11,4 @@ export {
   NavItems,
 } from './resizable-navbar';
 export { TextGenerateEffect } from './text-generate-effect';
+export { HoverEffect } from './card-hover-effect';

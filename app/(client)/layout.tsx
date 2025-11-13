@@ -13,7 +13,7 @@ import { cn } from '@/shared/lib';
 const notoFont = Noto_Sans_Adlam({ subsets: ['latin'] });
 
 const customFont = localFont({
-  src: '../public/font.ttf',
+  src: '../../public/font.ttf',
   variable: '--font-custom',
 });
 

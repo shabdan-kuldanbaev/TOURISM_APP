@@ -72,7 +72,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   });
 
   return (
-    <motion.header ref={ref} className={cn('fixed inset-x-0 top-0 z-40 w-full', className)}>
+    <motion.header ref={ref} className={cn('fixed inset-x-0 top-0 z-50 w-full', className)}>
       {Children.map(children, (child) =>
         isValidElement(child)
           ? cloneElement(child as ReactElement<{ visible?: boolean }>, { visible })
@@ -102,7 +102,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: '800px',
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-5 py-3 lg:flex dark:bg-transparent',
+        'relative z-[60] mx-auto hidden w-full container flex-row items-center justify-between self-start rounded-full bg-transparent px-5 py-3 lg:flex dark:bg-transparent',
         visible && 'bg-white/80 dark:bg-neutral-950/80',
         className
       )}

@@ -12,8 +12,9 @@ export async function getArticles(): Promise<Article[]> {
     _type,
     title,
     slug,
+    description,
+    previewImage,
     content
   }`;
-  const articles = await client.fetch<Article[]>(query);
-  return articles;
+  return await client.fetch<Article[]>(query);
 }

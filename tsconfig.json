@@ -26,7 +26,8 @@
       "@/features/*": ["./src/features/*"],
       "@/widgets/*": ["./src/widgets/*"],
       "@/shared/studio/*": ["./src/shared/studio/*"],
-      "@/shared/schemas/*": ["./src/shared/schemas/*"]
+      "@/shared/schemas/*": ["./src/shared/schemas/*"],
+      "@/public/*": ["./public/*"]
     }
   },
   "include": [

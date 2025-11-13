@@ -39,7 +39,9 @@ export const Article = async () => {
                 <span className="text-sm">{new Date(article._createdAt).toLocaleDateString()}</span>
               </div>
               <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                <Link href={`/articles/${article?.slug?.current}`}>{article.title}</Link>
+                <Link href={`/app/(client)/articles/${article?.slug?.current}`}>
+                  {article.title}
+                </Link>
               </h2>
               <p className="mb-5 font-light text-gray-500 dark:text-gray-400">
                 {article?.description}
@@ -56,7 +58,7 @@ export const Article = async () => {
                   <span className="font-medium dark:text-white">Jese Leos</span>
                 </div>
                 <Link
-                  href={`/articles/${article.slug.current}`}
+                  href={`/app/(client)/articles/${article.slug.current}`}
                   className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
                 >
                   Read more

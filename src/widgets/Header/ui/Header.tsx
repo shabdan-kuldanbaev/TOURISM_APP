@@ -14,26 +14,26 @@ import {
   NavItems,
 } from '@/shared/ui';
 
-export function Header() {
-  const navItems = [
-    {
-      name: 'Qui somme nous ?',
-      link: '#qui-somme-nous',
-    },
-    {
-      name: 'Programme',
-      link: '#programme',
-    },
-    {
-      name: 'Galerie',
-      link: '#galerie',
-    },
-    {
-      name: 'Articles',
-      link: '#articles',
-    },
-  ];
+const navItems = [
+  {
+    name: 'Qui somme nous ?',
+    link: '#qui-somme-nous',
+  },
+  {
+    name: 'Programme',
+    link: '#programme',
+  },
+  {
+    name: 'Galerie',
+    link: '#galerie',
+  },
+  {
+    name: 'Articles',
+    link: '/articles',
+  },
+];
 
+function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -44,7 +44,22 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 z-10 text-2xl font-bold font-custom cursor-pointer"
         >
-          <Image src="/logos/logoLight.svg" alt="La Kirghize logo" width={32} height={32} />
+          {/* Light logo - hidden in dark mode */}
+          <Image
+            src="/logos/logo.svg"
+            alt="La Kirghize logo"
+            width={32}
+            height={32}
+            className="block dark:hidden"
+          />
+          {/* Dark logo - hidden in light mode */}
+          <Image
+            src="/logos/logoLight.svg"
+            alt="La Kirghize logo"
+            width={32}
+            height={32}
+            className="hidden dark:block"
+          />
           <span>La Kirghize</span>
         </Link>
         <NavItems items={navItems} />
@@ -92,3 +107,5 @@ export function Header() {
     </Navbar>
   );
 }
+
+export default Header;

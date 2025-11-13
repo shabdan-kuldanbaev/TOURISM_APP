@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    remotePatterns: [{ hostname: 'flowbite.s3.amazonaws.com' }],
+    remotePatterns: [{ hostname: 'flowbite.s3.amazonaws.com' }, { hostname: 'cdn.sanity.io' }],
   },
 };
 
