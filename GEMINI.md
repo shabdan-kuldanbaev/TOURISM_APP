@@ -71,13 +71,14 @@ npm create sanity@latest -- --project r0p5o66x --dataset production --template c
 After running the init command, the generated `sanity` directory's contents are moved into the `src` folder to better align with the FSD architecture. The original `sanity` directory in the root is then removed.
 
 **FSD-Integrated Sanity Structure:**
-- **Configuration:** `sanity/env.ts` is moved to `src/shared/config/sanity.ts`.
-- **API Client:** `sanity/lib/client.ts` is moved to `src/shared/api/sanity-client.ts`.
-- **Utilities:** `sanity/lib/image.ts` & `live.ts` are moved to `src/shared/lib/sanity/`.
-- **Schemas:** The `sanity/schemas` directory is moved to `src/shared/schemas/`.
-- **Studio Internals:** `sanity/structure.ts` is moved to `src/shared/studio/`.
+The Sanity-related files are integrated into the `src` folder to align with the FSD architecture:
+- **Configuration:** `src/shared/config/sanity.ts`
+- **API Client:** `src/shared/api/sanity-client.ts`
+- **Utilities:** `src/shared/lib/sanity/image.ts` & `src/shared/lib/sanity/live.ts`
+- **Schemas:** `src/shared/schemas/`
+- **Studio Internals:** `src/shared/studio/`
 
-The root `sanity.config.ts` and `sanity.cli.ts` must be updated to point to these new file locations.
+The root `sanity.config.ts` and `sanity.cli.ts` are configured to point to these new file locations.
 
 **Required environment variables in `.env.local` (in root directory):**
 ```
@@ -155,13 +156,13 @@ Update `tsconfig.json` in the root directory with:
 
 ### 8. Create Base App Structure
 
-**`app/layout.tsx`:**
+**`app/(client)/layout.tsx`:**
 - Import Inter font from next/font/google
 - Export metadata (title, description)
 - Create RootLayout with HTML lang="en"
 - Apply font className to body
 
-**`app/page.tsx`:**
+**`app/(client)/page.tsx`:**
 - Create minimal home page component
 - Display "Project Initialized" heading
 - Use Tailwind classes for centering
