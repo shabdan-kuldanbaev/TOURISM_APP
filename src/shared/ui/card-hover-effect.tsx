@@ -1,6 +1,6 @@
 'use client';
 
-import { formatDate } from 'date-fns';
+import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
@@ -21,6 +21,7 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <div className={cn('grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-2 py-10', className)}>
       {items.map((item, idx) => (
@@ -63,7 +64,7 @@ export const HoverEffect = ({
             </div>
             <div className="flex-1 flex flex-col gap-3 p-4">
               <time className="text-right text-xs text-muted-foreground dark:text-muted-foreground font-mono tracking-wider uppercase">
-                {formatDate(item.date, 'MMMM d, yyyy', { locale: fr })}
+                {format(new Date(item.date), 'MMMM d, yyyy', { locale: fr })}
               </time>
 
               <div className="h-px bg-border dark:bg-border/50" />
