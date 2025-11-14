@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { cn } from '@/shared/lib';
 
 export const HoverEffect = ({
@@ -39,7 +39,7 @@ export const HoverEffect = ({
             {hoveredIndex === idx && (
               <motion.span
                 className="absolute inset-0 h-full w-full bg-hover block rounded-3xl"
-                layoutId="hovered"
+                layoutId="cardElHover"
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,
@@ -95,13 +95,7 @@ export const HoverEffect = ({
   );
 };
 
-export const Card = ({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => {
+export const Card = ({ className, children }: { className?: string; children: ReactNode }) => {
   return (
     <div
       className={cn(

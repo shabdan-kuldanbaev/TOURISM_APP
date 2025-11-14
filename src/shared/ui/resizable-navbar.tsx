@@ -133,7 +133,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         >
           {hovered === idx && (
             <motion.div
-              layoutId="hovered"
+              layoutId="navElHover"
               className="absolute inset-0 h-full w-full rounded-full bg-neutral-800"
             />
           )}
