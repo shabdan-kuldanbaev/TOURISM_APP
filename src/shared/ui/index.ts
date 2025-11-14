@@ -9,7 +9,6 @@ export {
   MobileNavToggle,
   NavBody,
   Navbar,
-  NavbarButton,
   NavItems,
 } from './resizable-navbar';
 export { TextGenerateEffect } from './text-generate-effect';

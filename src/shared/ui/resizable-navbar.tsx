@@ -5,9 +5,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/
 import Link from 'next/link';
 import {
   Children,
-  type ComponentPropsWithoutRef,
   cloneElement,
-  type ElementType,
   isValidElement,
   type ReactElement,
   type ReactNode,
@@ -33,6 +31,8 @@ interface NavItemsProps {
     name: string;
     link: string;
   }[];
+  itemStart?: ReactNode;
+  itemEnd?: ReactNode;
   className?: string;
   onItemClick?: () => void;
 }
@@ -102,7 +102,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: '800px',
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full container flex-row items-center justify-between self-start rounded-full bg-transparent px-5 py-3 lg:flex',
+        'relative z-[60] h-[60px] mx-auto hidden w-full container flex-row items-center justify-between self-start rounded-full bg-transparent lg:flex',
         visible && 'bg-neutral-950/80',
         className
       )}
@@ -112,34 +112,38 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({ items, className, onItemClick, itemEnd, itemStart }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <motion.div
-      onMouseLeave={() => setHovered(null)}
       className={cn(
-        'absolute inset-0 hidden flex-1 flex-row items-center justify-center text-lg font-normal transition duration-200 hover:text-zinc-800 lg:flex',
+        'absolute inset-0 hidden items-center justify-between text-lg font-normal transition duration-200 hover:text-zinc-800 lg:flex px-5 py-3',
         className
       )}
     >
-      {items.map((item, idx) => (
-        <Link
-          onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
-          className={'relative px-4 py-2 text-white'}
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && (
-            <motion.div
-              layoutId="navElHover"
-              className="absolute inset-0 h-full w-full rounded-full bg-neutral-800"
-            />
-          )}
-          <span className="relative z-20">{item.name}</span>
-        </Link>
-      ))}
+      <div className="flex-1">{itemStart}</div>
+      <div className="flex-1 flex items-center justify-center">
+        {items.map((item, idx) => (
+          <Link
+            onMouseEnter={() => setHovered(idx)}
+            onMouseLeave={() => setHovered(null)}
+            onClick={onItemClick}
+            className={'relative px-4 py-2 text-white'}
+            key={`link-${idx}`}
+            href={item.link}
+          >
+            {hovered === idx && (
+              <motion.div
+                layoutId="navElHover"
+                className="absolute inset-0 h-full w-full rounded-full bg-neutral-800"
+              />
+            )}
+            <span className="relative z-20">{item.name}</span>
+          </Link>
+        ))}
+      </div>
+      <div className="flex-1">{itemEnd}</div>
     </motion.div>
   );
 };
@@ -231,42 +235,5 @@ export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick:
     <X className="text-white" onClick={onClick} />
   ) : (
     <MenuIcon className="text-white" onClick={onClick} />
-  );
-};
-
-export const NavbarButton = ({
-  href,
-  as: Tag = 'a',
-  children,
-  className,
-  variant = 'primary',
-  ...props
-}: {
-  href?: string;
-  as?: ElementType;
-  children: ReactNode;
-  className?: string;
-  variant?: 'primary' | 'secondary' | 'dark' | 'gradient';
-} & (ComponentPropsWithoutRef<'a'> | ComponentPropsWithoutRef<'button'>)) => {
-  const baseStyles =
-    'px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-medium relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center';
-
-  const variantStyles = {
-    primary:
-      'shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]',
-    secondary: 'bg-transparent shadow-none dark:text-white',
-    dark: 'bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]',
-    gradient:
-      'bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]',
-  };
-
-  return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
-      {children}
-    </Tag>
   );
 };
