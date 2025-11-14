@@ -1,5 +1,4 @@
 'use client';
-// Stairs Transition
 
 import { motion } from 'framer-motion';
 import type { Variants } from 'motion';
@@ -12,32 +11,11 @@ export const expand: Variants = {
   enter: (i) => ({
     top: '100vh',
     transition: {
-      duration: 0.4,
-      delay: 0.05 * i,
-      ease: [0.215, 0.61, 0.355, 1],
-    },
-    transitionEnd: { height: '0', top: '0' },
-  }),
-  exit: (i: number) => ({
-    height: '100vh',
-    transition: {
-      duration: 0.4,
+      duration: 0.5,
       delay: 0.05 * i,
       ease: [0.215, 0.61, 0.355, 1],
     },
   }),
-};
-
-export const opacity: Variants = {
-  initial: {
-    opacity: 0.5,
-  },
-  enter: {
-    opacity: 0,
-  },
-  exit: {
-    opacity: 0.5,
-  },
 };
 
 export const PageTransition = ({ children }: { children: ReactNode }) => {
@@ -45,7 +23,6 @@ export const PageTransition = ({ children }: { children: ReactNode }) => {
     return {
       initial: 'initial',
       animate: 'enter',
-      exit: 'exit',
       custom,
       variants,
     };
@@ -54,14 +31,19 @@ export const PageTransition = ({ children }: { children: ReactNode }) => {
   const nbOfColumns = 5;
 
   return (
-    <div className="bg-background">
-      <motion.div {...anim(opacity)} className="transition-background" />
-      <div className="transition-container">
+    <>
+      <div className="fixed top-0 left-0 w-screen h-screen flex pointer-events-none z-50">
         {[...Array(nbOfColumns)].map((_, i) => {
-          return <motion.div key={i} {...anim(expand, nbOfColumns - i)} />;
+          return (
+            <motion.div
+              key={i}
+              {...anim(expand, nbOfColumns - i)}
+              className="relative w-full h-full bg-background"
+            />
+          );
         })}
       </div>
       {children}
-    </div>
+    </>
   );
 };
