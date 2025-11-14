@@ -102,7 +102,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: '800px',
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full container flex-row items-center justify-between self-start rounded-full bg-transparent px-5 py-3 lg:flex dark:bg-transparent',
+        'relative z-[60] mx-auto hidden w-full container flex-row items-center justify-between self-start rounded-full bg-transparent px-5 py-3 lg:flex',
         visible && 'bg-neutral-950/80',
         className
       )}
@@ -228,9 +228,9 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }: MobileNa
 
 export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => {
   return isOpen ? (
-    <X className="text-black dark:text-white" onClick={onClick} />
+    <X className="text-white" onClick={onClick} />
   ) : (
-    <MenuIcon className="text-black dark:text-white" onClick={onClick} />
+    <MenuIcon className="text-white" onClick={onClick} />
   );
 };
 

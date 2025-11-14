@@ -39,7 +39,7 @@ function Header() {
   return (
     <Navbar>
       <NavBody>
-        <Link href="/" className=" flex items-center gap-2 z-10 text-2xl cursor-pointer">
+        <Link href="/" className="flex items-center gap-2 z-10 text-2xl cursor-pointer">
           <Image src="/logos/logoLight.svg" alt="La Kirghize logo" width={32} height={32} />
           <span className="text-white font-bold font-custom">La Kirghize</span>
         </Link>
@@ -54,8 +54,9 @@ function Header() {
       {/* Mobile Navigation */}
       <MobileNav>
         <MobileNavHeader>
-          <Link href="/" className="px-4 text-2xl font-bold font-custom cursor-pointer">
-            La Kirghize
+          <Link href="/" className="flex items-center gap-2 z-10 text-2xl cursor-pointer">
+            <Image src="/logos/logoLight.svg" alt="La Kirghize logo" width={32} height={32} />
+            <span className="text-white font-bold font-custom">La Kirghize</span>
           </Link>
           <MobileNavToggle
             isOpen={isMobileMenuOpen}
