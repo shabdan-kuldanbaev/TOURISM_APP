@@ -1,6 +1,7 @@
 import { dehydrate } from '@tanstack/query-core';
 import { HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { ARTICLE_QUERY_KEY, getArticles } from '@/entities/article';
+import { PageTransition } from '@/shared/ui';
 import { ArticlesSection } from '@/widgets/ArticlesHero';
 import { ArticlesListSection } from '@/widgets/ArticlesList';
 
@@ -14,8 +15,10 @@ export default async function ArticlesPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ArticlesSection />
-      <ArticlesListSection />
+      <PageTransition>
+        <ArticlesSection />
+        <ArticlesListSection />
+      </PageTransition>
     </HydrationBoundary>
   );
 }

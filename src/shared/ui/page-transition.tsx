@@ -1,3 +1,4 @@
+'use client';
 // Stairs Transition
 
 import { motion } from 'framer-motion';
