@@ -16,11 +16,11 @@ import {
 
 const navItems = [
   {
-    name: 'Qui somme nous ?',
+    name: 'L’équipe',
     link: '#qui-somme-nous',
   },
   {
-    name: 'Programme',
+    name: 'Circuit',
     link: '#programme',
   },
   {

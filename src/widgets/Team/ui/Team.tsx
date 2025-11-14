@@ -3,7 +3,7 @@ import { InfiniteMovingCards } from '@/shared/ui';
 
 export const Team = () => {
   return (
-    <section className="relative z-10 bg-white dark:bg-gray-900">
+    <section className="relative z-10 bg-background app-background">
       <div className="py-8 px-4 mx-auto max-w-screen-xl h-[40rem] text-center lg:py-16 lg:px-6">
         <InfiniteMovingCards
           items={[

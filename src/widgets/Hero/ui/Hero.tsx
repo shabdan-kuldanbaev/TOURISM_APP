@@ -23,14 +23,14 @@ export const Hero = () => {
   }, [logoScope.current]);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-screen overflow-hidden py-56">
       <video
         autoPlay
         loop
         muted
         playsInline
         poster="/hero/hero-poster.jpg"
-        className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+        className="absolute inset-0 z-10 w-auto min-w-full min-h-full max-w-none"
       >
         <source src="/hero/hero-desktop.mp4" type="video/mp4" media="(min-width: 1024px)" />
         <source
@@ -41,7 +41,7 @@ export const Hero = () => {
         <source src="/hero/hero-mobile.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="relative z-20 px-4 mx-auto max-w-screen-xl flex flex-col items-center justify-center text-center gap-3">
+      <div className="relative z-20 px-4 mx-auto h-full max-w-screen-xl flex flex-col items-center justify-between text-center gap-10">
         <motion.div ref={logoScope} className="flex flex-col items-center justify-center gap-4">
           <Image
             src="/logos/logoLight.svg"
@@ -53,7 +53,10 @@ export const Hero = () => {
           <span className="text-white font-custom text-5xl opacity-0">La Kirghize</span>
         </motion.div>
 
-        <TextGenerateEffect words="Découvrez le Kirghizistan avec nous" className="text-white" />
+        <TextGenerateEffect
+          words="Voyage au Kirghizistan à pied ou à cheval"
+          className="text-white"
+        />
       </div>
     </section>
   );
