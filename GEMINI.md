@@ -76,7 +76,7 @@ The Sanity-related files are integrated into the `src` folder to align with the 
 - **API Client:** `src/shared/api/sanity-client.ts`
 - **Utilities:** `src/shared/lib/sanity/image.ts` & `src/shared/lib/sanity/live.ts`
 - **Schemas:** `src/shared/schemas/`
-- **Studio Internals:** `src/shared/studio/`
+- **Studio Internals:** `src/shared/studio/` (e.g., `structure.ts`)
 
 The root `sanity.config.ts` and `sanity.cli.ts` are configured to point to these new file locations.
 
@@ -94,9 +94,9 @@ Install `next-sanity` package for seamless Next.js integration.
 
 Create the following directory structure **in the root directory**:
 ```
-app/                          # Next.js App Router
+app/                          # Next.js App Router, including (client) and (studio) routes
 src/
-  app/                        # Application-level components and providers
+  app/                        # Application-level components and providers (e.g., providers.tsx)
   shared/
     ui/                       # Shared UI components (shadcn/ui exports)
     lib/                      # Utility functions
@@ -110,7 +110,7 @@ src/
   widgets/                    # Composite blocks (e.g., Article, Contact, Header)
 ```
 
-The initial setup includes the `article` entity and several pre-built widgets: `Article`, `Contact`, `CTA`, `Footer`, `Header`, `Hero`, `Newsletter`, `Team`, and `Testimonial`.
+The initial setup includes the `article` entity and several pre-built widgets: `Article`, `ArticlesHero`, `ArticlesList`, `Contact`, `CTA`, `Footer`, `Header`, `Hero`, `Newsletter`, `Team`, and `Testimonial`.
 
 **Create barrel exports (`index.ts`) for each layer:**
 - `src/shared/ui/index.ts`
@@ -167,6 +167,8 @@ Update `tsconfig.json` in the root directory with:
 - Display "Project Initialized" heading
 - Use Tailwind classes for centering
 
+**Note:** The project also includes routing for articles at `app/(client)/articles/page.tsx` and dynamic article pages at `app/(client)/articles/[slug]/page.tsx`.
+
 ### 9. Create Documentation Files
 
 **`README.md` in root directory should include:**
@@ -218,7 +220,13 @@ Ensure `.gitignore` in root directory includes:
 - TypeScript build info
 - OS files (.DS_Store)
 
-### 11. Verification Steps
+### 11. Public Directory Assets
+
+The `public` directory contains static assets such as images and videos.
+- `public/hero/`: Contains hero section assets (e.g., `hero-desktop.mp4`, `hero-mobile.mp4`, `hero-poster.jpg`).
+- `public/logos/`: Contains various logo files (e.g., `logo.svg`, `favicon.ico`).
+
+### 12. Verification Steps
 
 After initialization, verify the setup by:
 1. Installing all dependencies
@@ -258,7 +266,7 @@ When working with Sanity content:
 
 **Schema Definition (src/shared/schemas/ or co-located within entities):**
 - Define content types in Sanity Studio
-- Export schemas from barrel file (or directly from entity if co-located)
+- Export schemas from barrel file (e.g., `src/shared/schemas/index.ts`) (or directly from entity if co-located)
 - Example: `src/entities/article/model/article.schema.ts`
 
 **Entity Layer (src/entities/):**
@@ -269,7 +277,7 @@ When working with Sanity content:
 ```
   src/entities/article/
     index.ts             # Barrel export for the entity
-    api/                 # API functions for fetching data (e.g., getArticles.ts)
+    api/                 # API functions for fetching data (e.g., getArticles.ts, useArticles.ts, useArticleBySlug.ts)
     model/               # Business logic and schemas (e.g., article.schema.ts)
     types/               # TypeScript types (e.g., article.ts)
     ui/                  # React components for the entity (e.g., ArticleCard.tsx)
