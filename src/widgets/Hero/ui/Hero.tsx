@@ -23,7 +23,7 @@ export const Hero = () => {
   }, [logoScope.current]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden py-56">
+    <section className="sticky top-0 z-10 w-full h-screen overflow-hidden py-56">
       <video
         autoPlay
         loop

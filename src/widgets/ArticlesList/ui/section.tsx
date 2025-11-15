@@ -21,7 +21,7 @@ export const ArticlesListSection = () => {
   );
 
   return (
-    <section className="relative app-background bg-background dark:bg-black py-8 z-10">
+    <section className="relative z-10 app-background bg-background dark:bg-black py-8 shadow-2xl">
       <div className="container mx-auto px-4">
         <HoverEffect items={articles} />
       </div>
